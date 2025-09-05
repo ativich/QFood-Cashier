@@ -8,8 +8,8 @@ interface Staff {
   store_id?: string;
   uuid?: string;
   username: string;
-  role: "manager" | "chef" | "cashier" | "employee" | "member";
-  status: string;
+  role: "manager" | "chef" | "cashier" | "employee";
+  status?: string;
   password: string; // ทำให้ required
   created_at?: string;
   updated_at?: string;
@@ -61,7 +61,6 @@ export default function StaffPage() {
       username: "",
       password: "",
       role: "employee",
-      status: "active",  // ✅ เพิ่ม
     });
     setShowModalAdd(true);
   };
@@ -187,7 +186,7 @@ export default function StaffPage() {
     chef: "เชฟ",
     cashier: "พนักงานเก็บเงิน",
     employee: "พนักงาน",
-    member: "สมาชิก",
+    // member: "สมาชิก",
   };
 
 
@@ -306,7 +305,9 @@ export default function StaffPage() {
               ) : (
                 staffList.map((staff: Staff) => (
                   <tr key={staff.uuid}>
-                    <td>{staff.uuid}</td>
+                    <td>
+                      {/* {staff.uuid} */}
+                      </td>
                     <td>{staff.username}</td>
                     <td>{roleLabels[staff.role] || staff.role}</td>
                     <td>
@@ -390,7 +391,7 @@ export default function StaffPage() {
                 <option value="chef">เชฟ</option>
                 <option value="cashier">พนักงานเก็บเงิน</option>
                 <option value="employee">พนักงาน</option>
-                <option value="member">สมาชิก</option>
+                {/* <option value="member">สมาชิก</option> */}
               </select>
             </div>
 
@@ -437,16 +438,9 @@ export default function StaffPage() {
               </div>
             </div>
             <div className="flex">
-              <div className="mr-2">
-                <span className="font-semibold">สถานะ:</span>{" "}
-                <select
-                  className="input ml-2"
-                  value={selectedStaff.status}
-                  onChange={(e) => handleChange("status", e.target.value)}
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
+              <div className="mr-2 flex items-center">
+                <div className="font-semibold mr-1">สถานะ: </div>
+                <div> {selectedStaff.status}</div>
               </div>
               <div>
                 <span className="font-semibold">ตำแหน่ง:</span>
@@ -459,7 +453,7 @@ export default function StaffPage() {
                   <option value="chef">เชฟ</option>
                   <option value="cashier">พนักงานเก็บเงิน</option>
                   <option value="employee">พนักงาน</option>
-                  <option value="member">สมาชิก</option>
+                  {/* <option value="member">สมาชิก</option> */}
                 </select>
               </div>
             </div>

@@ -22,11 +22,13 @@ export default function TableMap({ selected, setSelected, statuses, filter = "al
       console.error("ไม่มี token กรุณา login ก่อน");
       return;
     }
+    console.log(token)
     try {
       const response = await api.get("/v1/tables");
       setTables(response.data.data.list || []);
       setTotalRecords(response.data.data.pagination.totalRecords || 0);
       console.log(response.data.data.pagination.totalRecords);
+      console.log(response.data.data.list);
     } catch (err) {
       console.error("โหลดโต๊ะไม่สำเร็จ:", err);
     }

@@ -1,9 +1,10 @@
 "use client";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+
 interface ShellProps {
   children: React.ReactNode;
-  onSearch?: (value: string) => void; // ใส่เครื่องหมาย ?
+  onSearch?: (value: string) => void;
 }
 
 export default function Shell({ children, onSearch }: ShellProps) {
